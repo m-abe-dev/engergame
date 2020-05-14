@@ -4,127 +4,15 @@
       <div class="loader">Loading...</div>
     </div>
     <div class="left-chatbox" v-show="!loading">
-      <router-link to="/chat/1/">
-      <div class="user-chatbox">
-        <div class="userimage">
-        </div>
-        <div class="user-detail">
-          <div class="username">SAMPLE NAME</div>
-          <div class="usercompany">株式会社SAMPLE</div>   
-        </div>
-      </div>
-      </router-link>
-      <div class="user-chatbox">
-        <div class="userimage">
-        </div>
-        <div class="user-detail">
-          <div class="username">SAMPLE NAME</div>
-          <div class="usercompany">株式会社SAMPLE</div>   
-        </div>
-      </div>
-      <div class="user-chatbox">
-        <div class="userimage">
-        </div>
-        <div class="user-detail">
-          <div class="username">SAMPLE NAME</div>
-          <div class="usercompany">株式会社SAMPLE</div>   
-        </div>
-      </div>
-      <div class="user-chatbox">
-        <div class="userimage">
-        </div>
-        <div class="user-detail">
-          <div class="username">SAMPLE NAME</div>
-          <div class="usercompany">株式会社SAMPLE</div>   
-        </div>
-      </div>
-      <div class="user-chatbox">
-        <div class="userimage">
-        </div>
-        <div class="user-detail">
-          <div class="username">SAMPLE NAME</div>
-          <div class="usercompany">株式会社SAMPLE</div>   
-        </div>
-      </div>
-      <div class="user-chatbox">
-        <div class="userimage">
-        </div>
-        <div class="user-detail">
-          <div class="username">SAMPLE NAME</div>
-          <div class="usercompany">株式会社SAMPLE</div>   
-        </div>
-      </div>
-      <div class="user-chatbox">
-        <div class="userimage">
-        </div>
-        <div class="user-detail">
-          <div class="username">SAMPLE NAME</div>
-          <div class="usercompany">株式会社SAMPLE</div>   
-        </div>
-      </div>
-      <div class="user-chatbox">
-        <div class="userimage">
-        </div>
-        <div class="user-detail">
-          <div class="username">SAMPLE NAME</div>
-          <div class="usercompany">株式会社SAMPLE</div>   
-        </div>
-      </div>
-      <div class="user-chatbox">
-        <div class="userimage">
-        </div>
-        <div class="user-detail">
-          <div class="username">SAMPLE NAME</div>
-          <div class="usercompany">株式会社SAMPLE</div>   
-        </div>
-      </div>
-      <div class="user-chatbox">
-        <div class="userimage">
-        </div>
-        <div class="user-detail">
-          <div class="username">SAMPLE NAME</div>
-          <div class="usercompany">株式会社SAMPLE</div>   
-        </div>
-      </div>
-      <div class="user-chatbox">
-        <div class="userimage">
-        </div>
-        <div class="user-detail">
-          <div class="username">SAMPLE NAME</div>
-          <div class="usercompany">株式会社SAMPLE</div>   
-        </div>
-      </div>
-      <div class="user-chatbox">
-        <div class="userimage">
-        </div>
-        <div class="user-detail">
-          <div class="username">SAMPLE NAME</div>
-          <div class="usercompany">株式会社SAMPLE</div>   
-        </div>
-      </div>
-      <div class="user-chatbox">
-        <div class="userimage">
-        </div>
-        <div class="user-detail">
-          <div class="username">SAMPLE NAME</div>
-          <div class="usercompany">株式会社SAMPLE</div>   
-        </div>
-      </div>
-      <div class="user-chatbox">
-        <div class="userimage">
-        </div>
-        <div class="user-detail">
-          <div class="username">SAMPLE NAME</div>
-          <div class="usercompany">株式会社SAMPLE</div>   
-        </div>
-      </div>
-      <div class="user-chatbox">
-        <div class="userimage">
-        </div>
-        <div class="user-detail">
-          <div class="username">SAMPLE NAME</div>
-          <div class="usercompany">株式会社SAMPLE</div>   
-        </div>
+      <div class="user-chatbox"  v-for="users in usersList">
+        <router-link :to="`/chat/${ users.user_id }`" :key="users.id">
+          <div class="userimage">
+          </div>
+          <div class="user-detail">
+            <div class="username">{{ users.sales_name }}</div>
+            <div class="usercompany">{{ users.company }}</div>   
+          </div>
+        </router-link>
       </div>
     </div>
     <div class="right-chatbox">
@@ -144,16 +32,25 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   data() {
     return {
+      usersList: [],
       loading: true,
     }
   },
   mounted() {
-    setTimeout(() => {
-      this.loading = false;
-    }, 1000);
+    axios.get('http://localhost:3000/mock/users')
+      .then(response => {
+        setTimeout(() => {
+          this.loading = false;
+          this.usersList = response.data
+        }, 1000);
+      })
+      .then(data => {
+          this.usersList = data
+      })
   },
 }
 </script>
@@ -290,6 +187,14 @@ a{
   border-radius: 4px;/*角丸*/
   box-sizing: border-box;
   margin-top: 15px;
+}
+
+.right-chatbox{
+  position: absolute;
+  right: 0;
+  width: calc(100% - 284px);
+  height: 100%;
+  display: inline-block;
 }
 
 /* Action アクション */
