@@ -1,109 +1,21 @@
 <template>
   <div class="chat-container">
     <div class="left-chatbox">
-      <router-link to="/chat/1/" class="link-spa">
-      <div class="user-chatbox">
-        <div class="userimage">
-        </div>
-        <div class="user-detail">
-          <div class="username">SAMPLE NAME</div>
-          <div class="usercompany">株式会社SAMPLE</div>   
-        </div>
-      </div>
-      </router-link>
-      <div class="user-chatbox">
-        <div class="userimage">
-        </div>
-        <div class="user-detail">
-          <div class="username">SAMPLE NAME</div>
-          <div class="usercompany">株式会社SAMPLE</div>   
-        </div>
-      </div>
-      <div class="user-chatbox">
-        <div class="userimage">
-        </div>
-        <div class="user-detail">
-          <div class="username">SAMPLE NAME</div>
-          <div class="usercompany">株式会社SAMPLE</div>   
-        </div>
-      </div>
-      <div class="user-chatbox">
-        <div class="userimage">
-        </div>
-        <div class="user-detail">
-          <div class="username">SAMPLE NAME</div>
-          <div class="usercompany">株式会社SAMPLE</div>   
-        </div>
-      </div>
-      <div class="user-chatbox">
-        <div class="userimage">
-        </div>
-        <div class="user-detail">
-          <div class="username">SAMPLE NAME</div>
-          <div class="usercompany">株式会社SAMPLE</div>   
-        </div>
-      </div>
-      <div class="user-chatbox">
-        <div class="userimage">
-        </div>
-        <div class="user-detail">
-          <div class="username">SAMPLE NAME</div>
-          <div class="usercompany">株式会社SAMPLE</div>   
-        </div>
-      </div>
-      <div class="user-chatbox">
-        <div class="userimage">
-        </div>
-        <div class="user-detail">
-          <div class="username">SAMPLE NAME</div>
-          <div class="usercompany">株式会社SAMPLE</div>   
-        </div>
-      </div>
-      <div class="user-chatbox">
-        <div class="userimage">
-        </div>
-        <div class="user-detail">
-          <div class="username">SAMPLE NAME</div>
-          <div class="usercompany">株式会社SAMPLE</div>   
-        </div>
-      </div>
-      <div class="user-chatbox">
-        <div class="userimage">
-        </div>
-        <div class="user-detail">
-          <div class="username">SAMPLE NAME</div>
-          <div class="usercompany">株式会社SAMPLE</div>   
-        </div>
-      </div>
-      <div class="user-chatbox">
-        <div class="userimage">
-        </div>
-        <div class="user-detail">
-          <div class="username">SAMPLE NAME</div>
-          <div class="usercompany">株式会社SAMPLE</div>   
-        </div>
-      </div>
-      <div class="user-chatbox">
-        <div class="userimage">
-        </div>
-        <div class="user-detail">
-          <div class="username">SAMPLE NAME</div>
-          <div class="usercompany">株式会社SAMPLE</div>   
-        </div>
-      </div>
-      <div class="user-chatbox">
-        <div class="userimage">
-        </div>
-        <div class="user-detail">
-          <div class="username">SAMPLE NAME</div>
-          <div class="usercompany">株式会社SAMPLE</div>   
-        </div>
+      <div class="user-chatbox"  v-for="users in usersList" @click="load">
+        <router-link :to="`/chat/${ users.user_id }`" :key="users.id">
+          <div class="userimage">
+          </div>
+          <div class="user-detail">
+            <div class="username">{{ users.sales_name }}</div>
+            <div class="usercompany">{{ users.company }}</div>   
+          </div>
+        </router-link>
       </div>
     </div>
     <div class="right-chatbox">
       <div class="main-box">
         <div class="message-recruit-title">
-          <p>【AI・クローラーエンジニア】HR Tech業界で人材と企業を独自のアルゴリズムで結び付け、新たな理論を創ったプラットフォーム...</p>
+          <p>{{ room.title | truncateTitle }}</p>
         </div>
         <div class="chat-mainbox">
           <div class="chat-message-box">
@@ -111,115 +23,7 @@
               <div class="chat-profile-image">
               </div>
               <div class="chat-profile-name">
-                kauzya sakamoto
-              </div>
-            </div>
-            <div class="message-content">
-              確認したら、基本設計時記載していなかったですね！
-              未作業: 何もしていない
-              作業中: 1つでも行なってる
-              申請中; 申請ボタンを押し、メールを送信した段階
-              承認済み: 承認者が承認した段階
-              完了: 完了
-              もしDB設計上で、何か判定に不具合がありそうであれば、小西さんに報告して修正してもいいと思いますよ！
-            </div>
-          </div>
-          <div class="chat-message-box">
-            <div class="chat-message-profile-box">
-              <div class="chat-profile-image">
-              </div>
-              <div class="chat-profile-name">
-                kauzya sakamoto
-              </div>
-            </div>
-            <div class="message-content">
-              確認したら、基本設計時記載していなかったですね！
-              未作業: 何もしていない
-              作業中: 1つでも行なってる
-              申請中; 申請ボタンを押し、メールを送信した段階
-              承認済み: 承認者が承認した段階
-              完了: 完了
-              もしDB設計上で、何か判定に不具合がありそうであれば、小西さんに報告して修正してもいいと思いますよ！
-            </div>
-          </div>
-          <div class="chat-message-box">
-            <div class="chat-message-profile-box">
-              <div class="chat-profile-image">
-              </div>
-              <div class="chat-profile-name">
-                kauzya sakamoto
-              </div>
-            </div>
-            <div class="message-content">
-              確認したら、基本設計時記載していなかったですね！
-              未作業: 何もしていない
-              作業中: 1つでも行なってる
-              申請中; 申請ボタンを押し、メールを送信した段階
-              承認済み: 承認者が承認した段階
-              完了: 完了
-              もしDB設計上で、何か判定に不具合がありそうであれば、小西さんに報告して修正してもいいと思いますよ！
-            </div>
-          </div>
-          <div class="chat-message-box">
-            <div class="chat-message-profile-box">
-              <div class="chat-profile-image">
-              </div>
-              <div class="chat-profile-name">
-                kauzya sakamoto
-              </div>
-            </div>
-            <div class="message-content">
-              確認したら、基本設計時記載していなかったですね！
-              未作業: 何もしていない
-              作業中: 1つでも行なってる
-              申請中; 申請ボタンを押し、メールを送信した段階
-              承認済み: 承認者が承認した段階
-              完了: 完了
-              もしDB設計上で、何か判定に不具合がありそうであれば、小西さんに報告して修正してもいいと思いますよ！
-            </div>
-          </div>
-          <div class="chat-message-box">
-            <div class="chat-message-profile-box">
-              <div class="chat-profile-image">
-              </div>
-              <div class="chat-profile-name">
-                kauzya sakamoto
-              </div>
-            </div>
-            <div class="message-content">
-              確認したら、基本設計時記載していなかったですね！
-              未作業: 何もしていない
-              作業中: 1つでも行なってる
-              申請中; 申請ボタンを押し、メールを送信した段階
-              承認済み: 承認者が承認した段階
-              完了: 完了
-              もしDB設計上で、何か判定に不具合がありそうであれば、小西さんに報告して修正してもいいと思いますよ！
-            </div>
-          </div>
-          <div class="chat-message-box">
-            <div class="chat-message-profile-box">
-              <div class="chat-profile-image">
-              </div>
-              <div class="chat-profile-name">
-                kauzya sakamoto
-              </div>
-            </div>
-            <div class="message-content">
-              確認したら、基本設計時記載していなかったですね！
-              未作業: 何もしていない
-              作業中: 1つでも行なってる
-              申請中; 申請ボタンを押し、メールを送信した段階
-              承認済み: 承認者が承認した段階
-              完了: 完了
-              もしDB設計上で、何か判定に不具合がありそうであれば、小西さんに報告して修正してもいいと思いますよ！
-            </div>
-          </div>
-          <div class="chat-message-box">
-            <div class="chat-message-profile-box">
-              <div class="chat-profile-image">
-              </div>
-              <div class="chat-profile-name">
-                kauzya sakamoto
+                {{ room.sales_name }}
               </div>
             </div>
             <div class="message-content">
@@ -248,8 +52,71 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
-  name: 'ChatMessage',
+  props: {
+    id: {type: Number},
+    id: Number
+  },
+  data(){
+    return {
+      usersList: [],
+      room: null,
+      loading: true
+    }
+  },
+  // * 文字制限
+  filters: {
+    truncateTitle: function(value) {
+      var length = 60;
+      var ommision = "...";
+      if (value.length <= length) {
+        return value;
+      }
+      return value.substring(0, length) + ommision;
+    },
+  },
+  created() {
+    axios.get(`${this.$httpPosts}/${this.id}/`)
+        .then(response => {
+          setTimeout(() => {
+            this.loading = false;
+            this.room = response.data
+            console.log(response.data)
+          }, 1);
+        })
+        .then(data => {
+          this.post = data
+        })
+  },
+  mounted() {
+    axios.get('http://localhost:3000/mock/users')
+      .then(response => {
+        setTimeout(() => {
+          this.loading = false;
+          this.usersList = response.data
+        }, 1);
+      })
+      .then(data => {
+          this.usersList = data
+      })
+  },
+  methods: {
+    // * 名前を押した際に再度 axios を起動する
+    load: function(){
+      axios.get(`${this.$httpPosts}/${this.id}/`)
+          .then(response => {
+            setTimeout(() => {
+              this.loading = false;
+              this.room = response.data
+            }, 400);
+          })
+          .then(data => {
+            this.post = data
+          })
+    }
+  }
+
 }
 </script>
 
@@ -415,6 +282,82 @@ export default {
 }
 
 
+.load-box{
+  width: 100px;
+  height: 100px;
+  /* background-color: #0052C0; */
+  margin: 200px auto 0 auto;
+}
+
+.loader {
+  margin: 100px auto;
+  font-size: 25px;
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+  position: relative;
+  text-indent: -9999em;
+  -webkit-animation: load5 1.1s infinite ease;
+  animation: load5 1.1s infinite ease;
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+}
+@-webkit-keyframes load5 {
+  0%,
+  100% {
+    box-shadow: 0em -2.6em 0em 0em #2AC1DF, 1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2), 2.5em 0em 0 0em rgba(255, 255, 255, 0.2), 1.75em 1.75em 0 0em rgba(255, 255, 255, 0.2), 0em 2.5em 0 0em rgba(255, 255, 255, 0.2), -1.8em 1.8em 0 0em rgba(255, 255, 255, 0.2), -2.6em 0em 0 0em rgba(255, 255, 255, 0.5), -1.8em -1.8em 0 0em rgba(255, 255, 255, 0.7);
+  }
+  12.5% {
+    box-shadow: 0em -2.6em 0em 0em rgba(255, 255, 255, 0.7), 1.8em -1.8em 0 0em #2AC1DF, 2.5em 0em 0 0em rgba(255, 255, 255, 0.2), 1.75em 1.75em 0 0em rgba(255, 255, 255, 0.2), 0em 2.5em 0 0em rgba(255, 255, 255, 0.2), -1.8em 1.8em 0 0em rgba(255, 255, 255, 0.2), -2.6em 0em 0 0em rgba(255, 255, 255, 0.2), -1.8em -1.8em 0 0em rgba(255, 255, 255, 0.5);
+  }
+  25% {
+    box-shadow: 0em -2.6em 0em 0em rgba(255, 255, 255, 0.5), 1.8em -1.8em 0 0em rgba(255, 255, 255, 0.7), 2.5em 0em 0 0em #2AC1DF, 1.75em 1.75em 0 0em rgba(255, 255, 255, 0.2), 0em 2.5em 0 0em rgba(255, 255, 255, 0.2), -1.8em 1.8em 0 0em rgba(255, 255, 255, 0.2), -2.6em 0em 0 0em rgba(255, 255, 255, 0.2), -1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2);
+  }
+  37.5% {
+    box-shadow: 0em -2.6em 0em 0em rgba(255, 255, 255, 0.2), 1.8em -1.8em 0 0em rgba(255, 255, 255, 0.5), 2.5em 0em 0 0em rgba(255, 255, 255, 0.7), 1.75em 1.75em 0 0em #2AC1DF, 0em 2.5em 0 0em rgba(255, 255, 255, 0.2), -1.8em 1.8em 0 0em rgba(255, 255, 255, 0.2), -2.6em 0em 0 0em rgba(255, 255, 255, 0.2), -1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2);
+  }
+  50% {
+    box-shadow: 0em -2.6em 0em 0em rgba(255, 255, 255, 0.2), 1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2), 2.5em 0em 0 0em rgba(255, 255, 255, 0.5), 1.75em 1.75em 0 0em rgba(255, 255, 255, 0.7), 0em 2.5em 0 0em #2AC1DF, -1.8em 1.8em 0 0em rgba(255, 255, 255, 0.2), -2.6em 0em 0 0em rgba(255, 255, 255, 0.2), -1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2);
+  }
+  62.5% {
+    box-shadow: 0em -2.6em 0em 0em rgba(255, 255, 255, 0.2), 1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2), 2.5em 0em 0 0em rgba(255, 255, 255, 0.2), 1.75em 1.75em 0 0em rgba(255, 255, 255, 0.5), 0em 2.5em 0 0em rgba(255, 255, 255, 0.7), -1.8em 1.8em 0 0em #2AC1DF, -2.6em 0em 0 0em rgba(255, 255, 255, 0.2), -1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2);
+  }
+  75% {
+    box-shadow: 0em -2.6em 0em 0em rgba(255, 255, 255, 0.2), 1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2), 2.5em 0em 0 0em rgba(255, 255, 255, 0.2), 1.75em 1.75em 0 0em rgba(255, 255, 255, 0.2), 0em 2.5em 0 0em rgba(255, 255, 255, 0.5), -1.8em 1.8em 0 0em rgba(255, 255, 255, 0.7), -2.6em 0em 0 0em #2AC1DF, -1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2);
+  }
+  87.5% {
+    box-shadow: 0em -2.6em 0em 0em rgba(255, 255, 255, 0.2), 1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2), 2.5em 0em 0 0em rgba(255, 255, 255, 0.2), 1.75em 1.75em 0 0em rgba(255, 255, 255, 0.2), 0em 2.5em 0 0em rgba(255, 255, 255, 0.2), -1.8em 1.8em 0 0em rgba(255, 255, 255, 0.5), -2.6em 0em 0 0em rgba(255, 255, 255, 0.7), -1.8em -1.8em 0 0em #2AC1DF;
+  }
+}
+@keyframes load5 {
+  0%,
+  100% {
+    box-shadow: 0em -2.6em 0em 0em #2AC1DF, 1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2), 2.5em 0em 0 0em rgba(255, 255, 255, 0.2), 1.75em 1.75em 0 0em rgba(255, 255, 255, 0.2), 0em 2.5em 0 0em rgba(255, 255, 255, 0.2), -1.8em 1.8em 0 0em rgba(255, 255, 255, 0.2), -2.6em 0em 0 0em rgba(255, 255, 255, 0.5), -1.8em -1.8em 0 0em rgba(255, 255, 255, 0.7);
+  }
+  12.5% {
+    box-shadow: 0em -2.6em 0em 0em rgba(255, 255, 255, 0.7), 1.8em -1.8em 0 0em #2AC1DF, 2.5em 0em 0 0em rgba(255, 255, 255, 0.2), 1.75em 1.75em 0 0em rgba(255, 255, 255, 0.2), 0em 2.5em 0 0em rgba(255, 255, 255, 0.2), -1.8em 1.8em 0 0em rgba(255, 255, 255, 0.2), -2.6em 0em 0 0em rgba(255, 255, 255, 0.2), -1.8em -1.8em 0 0em rgba(255, 255, 255, 0.5);
+  }
+  25% {
+    box-shadow: 0em -2.6em 0em 0em rgba(255, 255, 255, 0.5), 1.8em -1.8em 0 0em rgba(255, 255, 255, 0.7), 2.5em 0em 0 0em #2AC1DF, 1.75em 1.75em 0 0em rgba(255, 255, 255, 0.2), 0em 2.5em 0 0em rgba(255, 255, 255, 0.2), -1.8em 1.8em 0 0em rgba(255, 255, 255, 0.2), -2.6em 0em 0 0em rgba(255, 255, 255, 0.2), -1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2);
+  }
+  37.5% {
+    box-shadow: 0em -2.6em 0em 0em rgba(255, 255, 255, 0.2), 1.8em -1.8em 0 0em rgba(255, 255, 255, 0.5), 2.5em 0em 0 0em rgba(255, 255, 255, 0.7), 1.75em 1.75em 0 0em #2AC1DF, 0em 2.5em 0 0em rgba(255, 255, 255, 0.2), -1.8em 1.8em 0 0em rgba(255, 255, 255, 0.2), -2.6em 0em 0 0em rgba(255, 255, 255, 0.2), -1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2);
+  }
+  50% {
+    box-shadow: 0em -2.6em 0em 0em rgba(255, 255, 255, 0.2), 1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2), 2.5em 0em 0 0em rgba(255, 255, 255, 0.5), 1.75em 1.75em 0 0em rgba(255, 255, 255, 0.7), 0em 2.5em 0 0em #2AC1DF, -1.8em 1.8em 0 0em rgba(255, 255, 255, 0.2), -2.6em 0em 0 0em rgba(255, 255, 255, 0.2), -1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2);
+  }
+  62.5% {
+    box-shadow: 0em -2.6em 0em 0em rgba(255, 255, 255, 0.2), 1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2), 2.5em 0em 0 0em rgba(255, 255, 255, 0.2), 1.75em 1.75em 0 0em rgba(255, 255, 255, 0.5), 0em 2.5em 0 0em rgba(255, 255, 255, 0.7), -1.8em 1.8em 0 0em #2AC1DF, -2.6em 0em 0 0em rgba(255, 255, 255, 0.2), -1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2);
+  }
+  75% {
+    box-shadow: 0em -2.6em 0em 0em rgba(255, 255, 255, 0.2), 1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2), 2.5em 0em 0 0em rgba(255, 255, 255, 0.2), 1.75em 1.75em 0 0em rgba(255, 255, 255, 0.2), 0em 2.5em 0 0em rgba(255, 255, 255, 0.5), -1.8em 1.8em 0 0em rgba(255, 255, 255, 0.7), -2.6em 0em 0 0em #2AC1DF, -1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2);
+  }
+  87.5% {
+    box-shadow: 0em -2.6em 0em 0em rgba(255, 255, 255, 0.2), 1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2), 2.5em 0em 0 0em rgba(255, 255, 255, 0.2), 1.75em 1.75em 0 0em rgba(255, 255, 255, 0.2), 0em 2.5em 0 0em rgba(255, 255, 255, 0.2), -1.8em 1.8em 0 0em rgba(255, 255, 255, 0.5), -2.6em 0em 0 0em rgba(255, 255, 255, 0.7), -1.8em -1.8em 0 0em #2AC1DF;
+  }
+}
+
 /* レスポンシブ */
 @media screen and (max-width: 767px) {
   .left-chatbox{
@@ -448,5 +391,6 @@ export default {
     height: 30%;
   }
 }
+
 
 </style>

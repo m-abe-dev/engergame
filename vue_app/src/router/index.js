@@ -43,8 +43,11 @@ export default new Router({
       })
     },
     {
-      path: '/chat/1/',
-      component: ChatMessage
+      path: '/chat/:id',
+      component: ChatMessage,
+      props: routes => ({
+        id: Number(routes.params.id),
+      })
     }
   ]
 })
