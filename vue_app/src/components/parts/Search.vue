@@ -1,18 +1,21 @@
 <template>
   <div class="serach-box">
     <form id="seach-form" action="search" method="get">
+      <!-- <input type="text" placeholder="Search" class="text" v-model="keyword"> -->
       <!-- {{ workerType.selected }} -->
-      <v-select id="search-type" name="hoge" :options="workerType.options" v-model="workerType.selected"></v-select><v-select id="search-type" name="hoge" :options="location.options" v-model="location.selected"></v-select><input v-model="form.freeword" id="search-free" name="" type="text" placeholder=" フリーワード"/>
-      <input id="search-btn" type="submit" value="検索" />
+      <v-select id="search-type" name="hoge" :options="workerType.options" v-model="workerType.selected"></v-select><v-select id="search-type" name="hoge" :options="location.options" v-model="location.selected"></v-select><input v-model="keyword" id="search-free" name="" type="text" placeholder=" フリーワード"/>
+      <input id="search-btn" v-on:click.prevent="search()" type="submit" value="検索" />
     </form>
   </div>
 </template>
 
 <script>
+import axios from 'axios'
 import vSelect from 'vue-select'
 export default {
   data(){
     return {
+      keyword: "",
       form: {
         freeword: ''
       },
@@ -48,10 +51,31 @@ export default {
   methods: {
     updateSelected (newSelected) {
       this.selected = newSelected
-    }
+    },
+    search() {
+      axios.get(`${this.$httpPosts}?freeword=${this.keyword}`)
+          .then(response => {
+            var projects = []
+            for(var i in response.data){
+              var project = response.data[i]
+                if ( project.title.indexOf(this.keyword) != -1) {
+                  // console.log(project)
+                  // console.log(this.keyword)
+                  var result = projects.push(project)
+                  console.log(result)
+                  return result
+                }
+            }
+            // console.log(response.data)
+              return response.data
+          })
+          .then(data => {
+              // console.log(data)
+          })
+    },
   },
   computed: {
-    // JSON型のデータの中から出力する値を算出する
+    // *JSON型のデータの中から出力する値を算出する
   }
 
 }

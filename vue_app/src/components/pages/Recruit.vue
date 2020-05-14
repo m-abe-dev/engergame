@@ -54,7 +54,7 @@
 <script>
 import axios from 'axios'
 // import database from '@/api/products.js'
-import Loading from '@/components/parts/Loading'
+// import Loading from '@/components/parts/Loading'
 export default {
   data(){
     return{
