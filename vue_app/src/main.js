@@ -9,10 +9,10 @@ import 'vue-select/dist/vue-select.css'; //? Search (Vue-select install)
 
 Vue.use(Vuex)
 Vue.component('v-select', vSelect) //? Search (Vue-select install)
-// reset css
-import 'normalize.css' //ResetCss
-import VueLoading from 'vue-loading-template'
-Vue.use(VueLoading, /** options **/)
+
+import 'normalize.css' //?ResetCss
+import VueLoading from 'vue-loading-template' //? vue-loader
+Vue.use(VueLoading, /** options **/) //? vue-loader
 
 // ! Font Awesome 
 // https://fontawesome.com/

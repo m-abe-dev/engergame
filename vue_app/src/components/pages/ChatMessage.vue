@@ -365,7 +365,6 @@ export default {
   color: #506690;
 }
 .message-content{
-  padding: 5px;
   font-size: 14px;
 }
 
