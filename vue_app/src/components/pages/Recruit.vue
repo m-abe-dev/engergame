@@ -47,7 +47,7 @@
       </div>
       </router-link>
     </paginate>
-    <paginate-links for="paginate-log" class="pagination" :show-step-links="true" ></paginate-links>
+    <paginate-links for="paginate-log" class="pagination" :show-step-links="true" @click="load"></paginate-links>
   </div>
 </template>
 
@@ -101,7 +101,7 @@ export default {
       .then(data => {
           this.postList = data
       })
-  }
+  },
 }
 </script>
 

@@ -27,13 +27,7 @@
               </div>
             </div>
             <div class="message-content">
-              確認したら、基本設計時記載していなかったですね！
-              未作業: 何もしていない
-              作業中: 1つでも行なってる
-              申請中; 申請ボタンを押し、メールを送信した段階
-              承認済み: 承認者が承認した段階
-              完了: 完了
-              もしDB設計上で、何か判定に不具合がありそうであれば、小西さんに報告して修正してもいいと思いますよ！
+              {{ room.messages }}
             </div>
           </div>
         </div>
@@ -62,7 +56,10 @@ export default {
     return {
       usersList: [],
       room: null,
-      loading: true
+      loading: true,
+      // messages: [],
+      // body: '',
+      // name: ''
     }
   },
   // * 文字制限
@@ -82,7 +79,7 @@ export default {
           setTimeout(() => {
             this.loading = false;
             this.room = response.data
-            console.log(response.data)
+            // console.log(response.data)
           }, 1);
         })
         .then(data => {
@@ -90,6 +87,7 @@ export default {
         })
   },
   mounted() {
+    // * User 情報
     axios.get('http://localhost:3000/mock/users')
       .then(response => {
         setTimeout(() => {
@@ -100,6 +98,14 @@ export default {
       .then(data => {
           this.usersList = data
       })
+      // * メッセージ情報
+    axios.get('http://localhost:3000/mock/users')
+    .then(response => {
+        setTimeout(() => {
+          this.loading = false;
+          this.messages = response.data
+        }, 1);
+    })
   },
   methods: {
     // * 名前を押した際に再度 axios を起動する
@@ -114,9 +120,17 @@ export default {
           .then(data => {
             this.post = data
           })
-    }
+    },
+    // createNewMessage: function(){
+    //   console.log('method が動いてるよ')
+    //   axios.post('https://jsonplaceholder.typicode.com/posts/1/comments', {
+    //     body: this.body,
+    //     name: null
+    //   })
+    //   .then(response => this.messages.unshift(response.data))
+    //   .catch(response => console.log(response))
+    // },
   }
-
 }
 </script>
 
@@ -181,19 +195,23 @@ export default {
 .message-recruit-title{
   padding: 0.1em 1em;
   margin: 1em 0;
-  color: #FFF;
-  background: #6eb7ff;
-  border-bottom: solid 6px #3f87ce;
+  color: #506690;
+  background: #FFFFFF;
+  border-bottom: solid 6px rgb(226, 226, 226);
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
   border-radius: 9px;
   transition: .4s;
   cursor: pointer;
+  font-weight: bold;
 }
 .message-recruit-title:hover {
-  background-color: #ffffff;
-  border-color: #e2e2e2;
-  color: #6eb7ff;
+  opacity: 0.6;
   font-weight: bold;
+	-webkit-transition: all 0.5s;
+	-moz-transition: all 0.5s;
+	-ms-transition: all 0.5s;
+	-o-transition: all 0.5s;
+	transition: all 0.5s;
 }
 .message-recruit-title p {
   font-size: 14px;
@@ -211,7 +229,7 @@ export default {
 }
 .chat-message-box{
   width: 100%;
-  height: 120px;
+  margin-bottom: 10px;
   /* background-color: #FFFFFF; */
 }
 .chat-message-profile-box{
@@ -274,6 +292,7 @@ export default {
   border-radius: 4px;/*角丸*/
   box-sizing: border-box;
   margin-top: 15px;
+  cursor: pointer;
 }
 
 /* Action アクション */
